@@ -69,17 +69,29 @@ export default function Home() {
 )}
         <h2 className="text-2xl font-bold mb-4">Theme: {theme}</h2>
 
-        <div className="grid grid-cols-5 gap-3">
-          {grid.map((item, index) => (
-            <div
-              key={index}
-              className="border border-white rounded p-4 min-h-28 flex flex-col justify-center text-center"
-            >
-              <div className="font-bold">{item.artist}</div>
-              <div className="text-sm text-gray-300 mt-2">{item.song}</div>
-            </div>
-          ))}
-        </div>
+       <div className="grid grid-cols-5 gap-3">
+  {grid.map((item, index) => (
+    <div
+      key={index}
+      className="border border-white rounded p-4 min-h-28 flex flex-col justify-center text-center"
+    >
+      <div className="font-bold">{item.artist}</div>
+      <div className="text-sm text-gray-300 mt-2">{item.song}</div>
+    </div>
+  ))}
+</div>
+
+{grid.length > 0 && (
+  <div className="mt-6">
+    <button
+      onClick={() => window.print()}
+      className="bg-green-600 hover:bg-green-700 px-5 py-3 rounded font-bold"
+    >
+      Print Grid
+    </button>
+  </div>
+)}
+
       </div>
     </main>
   );
