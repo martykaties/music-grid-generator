@@ -24,6 +24,7 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
 @media print {
   @page {
     size: A4 landscape;
@@ -54,5 +55,14 @@ body {
 
   .print-card div {
     color: black !important;
+  }
+
+  .print-card input {
+    width: 100% !important;
+    font-size: 12px !important;
+    color: black !important;
+    text-align: center !important;
+    overflow: visible !important;
+    white-space: normal !important;
   }
 }
