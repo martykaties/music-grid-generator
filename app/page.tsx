@@ -7,12 +7,27 @@ type Song = {
   song: string;
 };
 
+const MANAGER_PASSWORD = "manager1";
+
 export default function Home() {
+  const [password, setPassword] = useState("");
+  const [unlocked, setUnlocked] = useState(false);
+  const [loginError, setLoginError] = useState("");
+
   const [theme, setTheme] = useState("Boybands");
   const [grid, setGrid] = useState<Song[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [replacingIndex, setReplacingIndex] = useState<number | null>(null);
+
+  function checkPassword() {
+    if (password === MANAGER_PASSWORD) {
+      setUnlocked(true);
+      setLoginError("");
+    } else {
+      setLoginError("Incorrect password.");
+    }
+  }
 
   async function generateGrid() {
     setLoading(true);
@@ -74,6 +89,46 @@ export default function Home() {
     }
 
     setReplacingIndex(null);
+  }
+
+  if (!unlocked) {
+    return (
+      <main className="min-h-screen bg-black text-white p-6 flex items-center justify-center">
+        <div className="max-w-md w-full border border-gray-700 rounded p-6">
+          <h1 className="text-3xl font-bold mb-3">
+            Katie&apos;s Karaoke Challenge Generator
+          </h1>
+
+          <p className="text-gray-300 mb-5">
+            Enter the manager password to access the generator.
+          </p>
+
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") checkPassword();
+            }}
+            className="w-full p-3 rounded bg-white text-black mb-3"
+            placeholder="Password"
+          />
+
+          {loginError && (
+            <div className="bg-red-900 border border-red-500 text-white p-3 rounded mb-3">
+              {loginError}
+            </div>
+          )}
+
+          <button
+            onClick={checkPassword}
+            className="bg-blue-500 hover:bg-blue-600 px-5 py-3 rounded font-bold w-full"
+          >
+            Unlock
+          </button>
+        </div>
+      </main>
+    );
   }
 
   return (
