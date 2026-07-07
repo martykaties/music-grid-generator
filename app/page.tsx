@@ -80,11 +80,14 @@ export default function Home() {
     <main className="min-h-screen bg-black text-white p-6 print:bg-white print:text-black">
       <div className="max-w-5xl mx-auto">
         <h1 className="text-4xl font-bold mb-2 no-print">
-          Music Grid Generator
+          Katie&apos;s Karaoke Challenge Generator
         </h1>
 
         <p className="mb-6 text-gray-300 no-print">
-          Type a theme and let AI create a 20-square music grid.
+          Enter this week&apos;s advertised theme to generate a 20-song karaoke
+          challenge. You can edit any artist or song manually, or use Replace to
+          generate a new suggestion. Once you&apos;re happy with the list, print
+          it for the karaoke host.
         </p>
 
         <div className="flex gap-3 mb-6 no-print">
