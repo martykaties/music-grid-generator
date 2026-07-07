@@ -70,7 +70,10 @@ export default function Home() {
           </div>
         )}
 
-        <h2 className="text-2xl font-bold mb-4">Theme: {theme}</h2>
+      <div className="mb-4 text-center">
+  <h2 className="text-3xl font-bold">Karaoke Challenge</h2>
+  <p className="text-xl mt-1">Theme: {theme}</p>
+</div>
 
         <div className="grid grid-cols-5 gap-3 print-grid">
           {grid.map((item, index) => (
@@ -78,8 +81,24 @@ export default function Home() {
               key={index}
               className="border border-white rounded p-4 min-h-28 flex flex-col justify-center text-center print-card"
             >
-              <div className="font-bold">{item.artist}</div>
-              <div className="text-sm text-gray-300 mt-2">{item.song}</div>
+              <input
+  value={item.artist}
+  onChange={(e) => {
+    const updatedGrid = [...grid];
+    updatedGrid[index].artist = e.target.value;
+    setGrid(updatedGrid);
+  }}
+  className="font-bold text-center bg-transparent border-none outline-none w-full"
+/>
+              <input
+  value={item.song}
+  onChange={(e) => {
+    const updatedGrid = [...grid];
+    updatedGrid[index].song = e.target.value;
+    setGrid(updatedGrid);
+  }}
+  className="text-sm text-gray-300 mt-2 text-center bg-transparent border-none outline-none w-full"
+/>
             </div>
           ))}
         </div>
