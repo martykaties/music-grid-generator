@@ -11,10 +11,11 @@ export default function Home() {
   const [theme, setTheme] = useState("Boybands");
   const [grid, setGrid] = useState<Song[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   async function generateGrid() {
-  
     setLoading(true);
+    setError("");
 
     const response = await fetch("/api/generate", {
       method: "POST",
@@ -25,12 +26,14 @@ export default function Home() {
     });
    
 
-    const data = await response.json();
+   const data = await response.json();
 
-    if (data.songs) {
-      setGrid(data.songs);
-    }
-
+    if (!response.ok) {
+    setError(data.error || "Something went wrong. Please try again.");
+    setGrid([]);
+}   else if (data.songs) {
+    setGrid(data.songs);
+}   
     setLoading(false);
   }
 
@@ -59,6 +62,11 @@ export default function Home() {
           </button>
         </div>
 
+{error && (
+  <div className="bg-red-900 border border-red-500 text-white p-4 rounded mb-6">
+    {error}
+  </div>
+)}
         <h2 className="text-2xl font-bold mb-4">Theme: {theme}</h2>
 
         <div className="grid grid-cols-5 gap-3">
