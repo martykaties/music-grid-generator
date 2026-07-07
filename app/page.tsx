@@ -46,7 +46,7 @@ export default function Home() {
           Type a theme and let AI create a 20-square music grid.
         </p>
 
-        <div className="flex gap-3 mb-6">
+        <div className="flex gap-3 mb-6 no-print">
           <input
             value={theme}
             onChange={(e) => setTheme(e.target.value)}
@@ -69,11 +69,11 @@ export default function Home() {
 )}
         <h2 className="text-2xl font-bold mb-4">Theme: {theme}</h2>
 
-       <div className="grid grid-cols-5 gap-3">
+       <div className="grid grid-cols-5 gap-3 print-grid">
   {grid.map((item, index) => (
     <div
       key={index}
-      className="border border-white rounded p-4 min-h-28 flex flex-col justify-center text-center"
+      className="border border-white rounded p-4 min-h-28 flex flex-col justify-center text-center print-card"
     >
       <div className="font-bold">{item.artist}</div>
       <div className="text-sm text-gray-300 mt-2">{item.song}</div>
@@ -82,7 +82,7 @@ export default function Home() {
 </div>
 
 {grid.length > 0 && (
-  <div className="mt-6">
+  <div className="mt-6 no-print">
     <button
       onClick={() => window.print()}
       className="bg-green-600 hover:bg-green-700 px-5 py-3 rounded font-bold"

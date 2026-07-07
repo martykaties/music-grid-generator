@@ -38,7 +38,7 @@ export async function POST(request: Request) {
       - Do not include numbering.
       - Do not include any text before or after the JSON.`,
       });
-      
+
     const text = response.output_text;
     const songs = JSON.parse(text);
 
